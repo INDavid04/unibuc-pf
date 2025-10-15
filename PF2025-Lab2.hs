@@ -63,8 +63,12 @@ sumaPatrateDoiParametrii x y =
 -- parametrul este par, altfel impar --
 ---------------------------------------
 
+-- Tine mine: Putem folosi modulo in doua moduri:
+-- 1. Ca operator: x `mod` 2 == 0
+-- 2. Ca functie: mod x 2 == 0
+
 parImpar x =
-    if (length x mod 2 == 0) then "par"
+    if (length x `mod` 2 == 0) then "par"
     else "impar"
 
 -----------------------------------
@@ -116,7 +120,7 @@ poly a, b, c, x =
 -------------------------------------
 
 eeny x =
-    if (x mod 2 == 0) then "eeny"
+    if (mod x 2 == 0) then "eeny"
     else "meeny"
 
 ------------
