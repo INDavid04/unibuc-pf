@@ -3,10 +3,6 @@
 -----------
 
 import Data.List
-myInt = 31415926535897932384626433832795028841971693993751058209749445923
-
-double :: Integer -> Integer
-    double x = x+x
 
 ---------------------------
 -- 4.1 Maximul a doua numere --
@@ -108,7 +104,7 @@ maximLista (x : xs) =
 -- functiei poly                 --
 -----------------------------------
 
-poly a, b, c, x = 
+poly a b c x = 
     a * x * x + b * x + c
 
 -------------------------------------
@@ -123,29 +119,51 @@ eeny x =
     if (mod x 2 == 0) then "eeny"
     else "meeny"
 
-------------
--- Others --
-------------
+--------------------------------------
+-- 9. Scrie o functie fizzbuzz.     --
+-- Ea intoarce "Fizz" pentru numere --
+-- divizibile cu 3, "Buzz" pentru   --
+-- numere divizibile cu 5 si        --
+-- "FizzBuzz" pentru numere         --
+-- divizibile cu ambele.            --
+-- Pentru orice alt nuamr intoarce  --
+-- sirul vid.                       --
+--------------------------------------
 
--- eeny :: Integer -> String
--- eeny = undefined
+fizzbuzz x =
+    if (x `mod` 3 == 0 && x `mod` 5 == 0) then "FizzBuzz"
+    else if (mod x 3 == 0) then "Fizz"
+    else if (mod x 5 == 0) then "Buzz"
+    else ""
 
--- fizzbuzz :: Integer -> String
--- fizzbuzz = undefined
+--------------------------------------
+-- 10. Scrieti functia tribonacci = --
+-- 1 : n = 1                        --
+-- 1 : n = 2                        --
+-- 2 : n = 3                        --
+-- t(n-1) + t(n-2) + t(n-3) : n > 3 --
+--------------------------------------
 
--- fibonacciCazuri :: Integer -> Integer
--- fibonacciCazuri n
---     | n < 2     = n
---     | otherwise = fibonacciCazuri (n - 1) + fibonacciCazuri (n - 2)
-    
--- fibonacciEcuational :: Integer -> Integer
--- fibonacciEcuational 0 = 0
--- fibonacciEcuational 1 = 1
--- fibonacciEcuational n =
---     fibonacciEcuational (n - 1) + fibonacciEcuational (n - 2)
-    
--- tribonacci :: Integer -> Integer
--- tribonacci = undefined
+tribonacci :: Integer -> Integer
+tribonacci n
+    | n == 1    = 1
+    | n == 2    = 1
+    | n == 3    = 2
+    | otherwise = tribonacci(n - 1) + tribonacci(n - 2) + tribonacci(n - 3)
 
--- binomial :: Integer -> Integer -> Integer
--- binomial = undefined
+--------------------------------------
+-- 11. Scrie o functie care         --
+-- calculeaza coeficientii          --
+-- binomiali. Avem regula B(n, k) = --
+-- B(n-1,k) + B(n-1,k-1),           --
+-- B(n, 0) = 1,                     --
+-- B(0, k) = 0.                     --
+--------------------------------------
+
+-- Tine minte: binomial(n-1, k) vine scris in felul: binomial (n - 1) k
+
+binomial :: Integer -> Integer -> Integer
+binomial n k
+    | k == 0    = 1
+    | n == 0    = 0
+    | otherwise = binomial (n - 1) (k) + binomial (n - 1) (k - 1)
