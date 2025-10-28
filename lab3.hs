@@ -1,3 +1,5 @@
+import Data.Char -- pentru problema 10 :)
+
 ------------------------------------------------------
 -- 1. Implementati urmatoare functii folosind liste --
 ------------------------------------------------------
@@ -118,5 +120,48 @@ inIntervalComp a b lista = [ x | x <- lista, x >= a, x <= b ]
 -- Exemplu: pozitive [0,1,-3,-2,8,-1,6] == 3
 
 -- a) Definiți funcția recursiv și denumiți-o pozitiveRec.
+pozitiveRec :: [Int] -> Int
+pozitiveRec [] = 0
+pozitiveRec (item : list)
+    | item > 0 = 1 + pozitiveRec list
+    | otherwise = pozitiveRec list 
 
 -- b) Folosiți descrieri de liste. Denumiți funcția pozitiveComp.
+pozitiveComp :: [Int] -> Int
+pozitiveComp list = length [item | item <- list, item > 0]
+
+-- 9. Scrieți o funcție care întoarce lista pozițiilor elementelor impare dintr-o listă de numere primită ca parmetru. 
+-- De exemplu: pozitiiImpare [0,1,-3,-2,8,-1,6,1] == [1,2,5,7]
+
+-- a) Definiți funcția recursiv și denumiți-o pozitiiImpareRec.
+-- Hint: Folosiți o funcție ajutătoare, cu un parametru în plus reprezentând poziția curentă din listă.
+
+pozitiiImpareRec :: [Int] -> [Int]
+pozitiiImpareRec [] = []
+pozitiiImpareRec list = f list 0
+    where
+        f [] _ = []
+        f (item : list) position
+            | item `mod` 2 == 1 = position : f list (position + 1)
+            | otherwise = f list (position + 1)
+
+-- b) Folosiți descrieri de liste. Denumiți funcția pozitiiImpareComp
+-- Hint: folosiți funcția `zip` pentru a asocia poziții elementelor listei (puteți găsi un exemplu în curs)
+
+pozitiiImpareComp :: [Int] -> [Int]
+pozitiiImpareComp list = [position | (item, position) <- zip list [0..], item `mod` 2 == 1]
+
+-- 10. Scrieți o funcție care calculează produsul tuturor cifrelor care apar într-un șir de caractere primit ca parametru. Dacă șirul nu conține cifre, funcția întoarce 1.
+-- De exemplu: multDigits "The time is 4:25" == 40 si multDigits "No digits here!" == 1
+-- Hint: Veți avea nevoie de funcția `isDigit` care verifică dacă un caracter e cifră și de funcția `digitToInt` care transformă un caracter în cifră. Cele 2 funcții se află în pachetul `Data.Char`.
+
+-- a) Definiți funcția recursiv și denumiți-o multDigitsRec.
+multDigitsRec :: [Char] -> Int
+multDigitsRec [] = 1
+multDigitsRec (character : characters)
+    | isDigit character = digitToInt character * multDigitsRec characters
+    | otherwise = multDigitsRec characters
+
+-- b) Folosiți descrieri de liste. Denumiți funcția multDigitsComp.
+multDigitsComp :: [Char] -> Int
+multDigitsComp characters = product [digitToInt character| character <- characters, isDigit character]
