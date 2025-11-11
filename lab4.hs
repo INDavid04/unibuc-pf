@@ -73,8 +73,20 @@ numaiVocale liste = [ [ caracter | caracter <- lista, caracter `elem` "aeiouAEIO
 -- Exemplu: mymap (* 3) [1, 3, 4] intoarce [3, 9, 12]
 -- Exemplu: myfilter (> 2) [3,1,4,2,5] intoarce [3, 4, 5]
 
+-- Din github
+-- mymap :: (a -> b) -> [a] -> [b]
+-- mymap f xs = [f x | x <- xs]
+
+-- myfilter :: (a -> Bool) -> [a] -> [a]
+-- myfilter p xs = [x | x <- xs, p x]
+
+-- Recursiv
 mymap :: (a -> b) -> [a] -> [b]
-mymap f xs = [f x | x <- xs]
+mymap _ [] = []
+mymap f (x : xs) = f x : mymap f xs
 
 myfilter :: (a -> Bool) -> [a] -> [a]
-myfilter p xs = [x | x <- xs, p x]
+myfilter _ [] = []
+myfilter p (x : xs)
+    | p x = x : myfilter p xs
+    | otherwise = myfilter p xs
