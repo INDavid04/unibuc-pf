@@ -24,6 +24,7 @@ evalExp (e1 :+: e2) = evalExp e1 + evalExp e2
 evalExp (e1 :*: e2) = evalExp e1 * evalExp e2
 
 -- 2. Scrieți o funcție evalArb :: Tree -> Int care evaluează o expresie modelată sub formă de arbore, determinând valoarea acesteia.
+-- in: evalArb arb3 = 13
 
 arb1 = Node Add (Node Mult (Lf 2) (Lf 3)) (Node Mult (Lf 0)(Lf 5))
 arb2 = Node Mult (Lf 2) (Node Add (Lf 3)(Lf 4))
